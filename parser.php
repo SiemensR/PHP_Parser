@@ -1,7 +1,7 @@
 <?php
 $xml=simplexml_load_file("https://nebido.com/sitemap.xml") or die("Error: Cannot create object");
-function check_url($urlo) {
-   $headers = @get_headers($urlo);
+function check_url($urls) {
+   $headers = @get_headers($urls);
    $headers = (is_array($headers)) ? implode( "\n ", $headers) : $headers;
    return (bool)preg_match('#^HTTP/.*\s+[(200|301|302)]+\s#i', $headers);
 }
@@ -15,7 +15,3 @@ foreach($xml->children() as $urls) {
       }
   //      $urls = new array[];
 ?>
-
-
-<!-- foreach($xml->children() as $urls) {
-        echo $urls->loc . "<br>";
